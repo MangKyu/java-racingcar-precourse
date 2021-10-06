@@ -2,6 +2,6 @@ package racinggame;
 
 public class Application {
     public static void main(String[] args) {
-        // TODO 숫자 야구 게임 구현
+        // TODO 자동차 경주 게임 구현
     }
 }
