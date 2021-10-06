@@ -20,8 +20,7 @@ import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mockStatic;
 
 public abstract class NSTest {
-    private static final Duration SIMPLE_TEST_TIMEOUT = Duration.ofSeconds(1L);
-    private static final Duration RANDOM_TEST_TIMEOUT = Duration.ofSeconds(10L);
+    private static final Duration TEST_TIMEOUT = Duration.ofSeconds(1L);
 
     private PrintStream standardOut;
     private OutputStream captor;
@@ -33,11 +32,11 @@ public abstract class NSTest {
     }
 
     protected void assertSimpleTest(final Executable executable) {
-        assertTimeoutPreemptively(SIMPLE_TEST_TIMEOUT, executable);
+        assertTimeoutPreemptively(TEST_TIMEOUT, executable);
     }
 
     protected void assertRandomTest(final Executable executable, final int value, final int... values) {
-        assertTimeoutPreemptively(RANDOM_TEST_TIMEOUT, () -> {
+        assertTimeoutPreemptively(TEST_TIMEOUT, () -> {
             try (final MockedStatic<Randoms> mockRandoms = mockStatic(Randoms.class)) {
                 mockRandoms.when(() -> Randoms.pickNumberInRange(anyInt(), anyInt()))
                         .thenReturn(value, Arrays.stream(values).boxed().toArray());
@@ -50,7 +49,7 @@ public abstract class NSTest {
      * 사용자의 입력을 기다리는 상황에서 테스트 종료
      * @param args
      */
-    protected void running(final String... args) {
+    protected void runNoLineFound(final String... args) {
         assertThatExceptionOfType(NoSuchElementException.class).isThrownBy(
                 () -> subject(args)
         );
