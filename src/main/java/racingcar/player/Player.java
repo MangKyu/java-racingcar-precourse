@@ -3,6 +3,7 @@ package racingcar.player;
 import camp.nextstep.edu.missionutils.Console;
 import racingcar.car.Cars;
 import racingcar.errors.RacingCarException;
+import racingcar.game.GameRound;
 
 public class Player {
 
@@ -15,9 +16,9 @@ public class Player {
         return input.split(",");
     }
 
-    public int inputGameRound() {
+    public GameRound inputGameRound() {
         final String input = Console.readLine();
-        return toInt(input);
+        return new GameRound(toInt(input));
     }
 
     private int toInt(final String input) {

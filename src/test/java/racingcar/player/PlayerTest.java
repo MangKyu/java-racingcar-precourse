@@ -10,6 +10,7 @@ import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 import racingcar.car.Cars;
 import racingcar.errors.RacingCarException;
+import racingcar.game.GameRound;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -66,10 +67,10 @@ class PlayerTest {
                 .thenReturn(String.valueOf(input));
 
         // when
-        final int result = player.inputGameRound();
+        final GameRound result = player.inputGameRound();
 
         // then
-        assertThat(result).isEqualTo(input);
+        assertThat(result).isNotNull();
     }
 
     @ParameterizedTest
@@ -86,4 +87,18 @@ class PlayerTest {
         result.isInstanceOf(IllegalArgumentException.class).hasMessageContaining(RacingCarException.PREFIX);
     }
 
+    @ParameterizedTest
+    @ValueSource(ints = {0, -1, -2, -3 -4})
+    void 이동할횟수입력성공_1보다작은입력(final int input) {
+        // given
+        console.when(Console::readLine)
+                .thenReturn(String.valueOf(input));
+
+        // when
+        final AbstractThrowableAssert<?, ? extends Throwable> result = assertThatThrownBy(() -> player.inputGameRound());
+
+        // then
+        result.isInstanceOf(IllegalArgumentException.class).hasMessageContaining(RacingCarException.PREFIX);
+
+    }
 }
