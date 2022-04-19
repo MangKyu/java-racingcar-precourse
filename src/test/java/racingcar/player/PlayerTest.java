@@ -58,4 +58,18 @@ class PlayerTest {
         result.isInstanceOf(IllegalArgumentException.class).hasMessageContaining(RacingCarException.PREFIX);
     }
 
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2, 3, 4, 5, 6, 7, 8, 9})
+    void 이동할횟수입력성공(final int input) {
+        // given
+        console.when(Console::readLine)
+                .thenReturn(String.valueOf(input));
+
+        // when
+        final int result = player.inputGameRound();
+
+        // then
+        assertThat(result).isEqualTo(input);
+    }
+
 }

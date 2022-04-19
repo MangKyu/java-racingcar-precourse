@@ -14,4 +14,13 @@ public class Player {
         return input.split(",");
     }
 
+    public int inputGameRound() {
+        final String input = Console.readLine();
+        return toInt(input);
+    }
+
+    private int toInt(final String input) {
+        return Integer.parseInt(input);
+    }
+
 }
