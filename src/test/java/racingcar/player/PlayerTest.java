@@ -1,6 +1,7 @@
 package racingcar.player;
 
 import camp.nextstep.edu.missionutils.Console;
+import org.assertj.core.api.AbstractThrowableAssert;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -11,6 +12,7 @@ import org.mockito.Mockito;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class PlayerTest {
 
@@ -30,7 +32,7 @@ class PlayerTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"a", "ab,abc", "a,ab,abc", "a,ab,abc,abcd"})
-    void 자동차들의이름을입력받는다(final String input) {
+    void 자동차들의이름을입력성공(final String input) {
         // given
         console.when(Console::readLine)
                 .thenReturn(input);
@@ -41,5 +43,20 @@ class PlayerTest {
         // then
         assertThat(result.size()).isNotZero();
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"", "abcdef,abc", "abc,abcdef"})
+    void 자동차들의이름을입력실패_잘못된입력(final String input) {
+        // given
+        console.when(Console::readLine)
+                .thenReturn(input);
+
+        // when
+        final AbstractThrowableAssert<?, ? extends Throwable> result = assertThatThrownBy(() -> player.inputCarNames());
+
+        // then
+        result.isInstanceOf(IllegalArgumentException.class).hasMessageContaining("[ERROR]");
+    }
+
 
 }
