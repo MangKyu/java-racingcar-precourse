@@ -45,7 +45,7 @@ class PlayerTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"", "abcdef,abc", "abc,abcdef"})
+    @ValueSource(strings = {"", "abcdef,abc", "abc,abcdef", "a,a"})
     void 자동차들의이름을입력실패_잘못된입력(final String input) {
         // given
         console.when(Console::readLine)
@@ -57,6 +57,5 @@ class PlayerTest {
         // then
         result.isInstanceOf(IllegalArgumentException.class).hasMessageContaining("[ERROR]");
     }
-
 
 }
