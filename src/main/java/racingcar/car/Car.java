@@ -6,6 +6,8 @@ import java.util.Objects;
 
 public class Car {
 
+    private static final int MIN_CAR_NAME_LENGTH = 1;
+    private static final int MAX_CAR_NAME_LENGTH = 5;
     private final String carName;
 
     public Car(final String carName) {
@@ -18,7 +20,7 @@ public class Car {
 
 
     private boolean notInLength(final String carName) {
-        return carName.length() < 1 || carName.length() > 5;
+        return carName.length() < MIN_CAR_NAME_LENGTH || carName.length() > MAX_CAR_NAME_LENGTH;
     }
 
     @Override
