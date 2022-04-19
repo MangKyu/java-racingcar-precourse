@@ -23,6 +23,20 @@ class CarTest {
     }
 
     @ParameterizedTest
+    @ValueSource(strings = {"a", "ab", "abc", "abcd", "abcde"})
+    void equals와hashcode테스트(final String input) {
+        // given
+        final Car car = new Car(input);
+
+        // when
+        final Car result = new Car(input);
+
+        // then
+        assertThat(result).isEqualTo(car);
+        assertThat(result.hashCode()).isEqualTo(car.hashCode());
+    }
+
+    @ParameterizedTest
     @ValueSource(strings = {"", "abcdef"})
     void 자동차생성실패_잘못된입력(final String input) {
         // given
