@@ -2,6 +2,7 @@ package racingcar.player;
 
 import camp.nextstep.edu.missionutils.Console;
 import racingcar.car.Cars;
+import racingcar.errors.RacingCarException;
 
 public class Player {
 
@@ -20,7 +21,11 @@ public class Player {
     }
 
     private int toInt(final String input) {
-        return Integer.parseInt(input);
+        try {
+            return Integer.parseInt(input);
+        } catch (final NumberFormatException e) {
+            throw RacingCarException.invalidInput("Not integer: " + input);
+        }
     }
 
 }

@@ -72,4 +72,18 @@ class PlayerTest {
         assertThat(result).isEqualTo(input);
     }
 
+    @ParameterizedTest
+    @ValueSource(strings = {"a", "+", "?", "MangKyu"})
+    void 이동할횟수입력성공_정수가아닌입력(final String input) {
+        // given
+        console.when(Console::readLine)
+                .thenReturn(input);
+
+        // when
+        final AbstractThrowableAssert<?, ? extends Throwable> result = assertThatThrownBy(() -> player.inputGameRound());
+
+        // then
+        result.isInstanceOf(IllegalArgumentException.class).hasMessageContaining(RacingCarException.PREFIX);
+    }
+
 }
