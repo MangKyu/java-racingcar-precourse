@@ -9,11 +9,16 @@ public class Car {
     private final String carName;
 
     public Car(final String carName) {
-        if (carName.length() < 1 || carName.length() > 5) {
+        if (notInLength(carName)) {
             throw RacingCarException.invalidInput("Invalid carName: " + carName);
         }
 
         this.carName = carName;
+    }
+
+
+    private boolean notInLength(final String carName) {
+        return carName.length() < 1 || carName.length() > 5;
     }
 
     @Override

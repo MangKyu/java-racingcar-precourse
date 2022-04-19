@@ -10,8 +10,8 @@ public class Cars {
 
     private final Set<Car> carSet;
 
-    public Cars(String[] carNames) {
-        if (carNames.length == 0) {
+    public Cars(final String[] carNames) {
+        if (isEmpty(carNames)) {
             throw RacingCarException.invalidInput("Invalid input: " + Arrays.toString(carNames));
         }
 
@@ -20,6 +20,10 @@ public class Cars {
         for (final String carName : carNames) {
             add(new Car(carName));
         }
+    }
+
+    private boolean isEmpty(final String[] carNames) {
+        return carNames.length == 0;
     }
 
     private void add(final Car car) {
