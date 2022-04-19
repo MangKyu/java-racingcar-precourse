@@ -8,8 +8,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
-
-import java.util.List;
+import racingcar.car.Cars;
+import racingcar.errors.RacingCarException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -38,10 +38,10 @@ class PlayerTest {
                 .thenReturn(input);
 
         // when
-        final List<String> result = player.inputCarNames();
+        final Cars result = player.inputCarNames();
 
         // then
-        assertThat(result.size()).isNotZero();
+        assertThat(result).isNotNull();
     }
 
     @ParameterizedTest
@@ -55,7 +55,7 @@ class PlayerTest {
         final AbstractThrowableAssert<?, ? extends Throwable> result = assertThatThrownBy(() -> player.inputCarNames());
 
         // then
-        result.isInstanceOf(IllegalArgumentException.class).hasMessageContaining("[ERROR]");
+        result.isInstanceOf(IllegalArgumentException.class).hasMessageContaining(RacingCarException.PREFIX);
     }
 
 }
