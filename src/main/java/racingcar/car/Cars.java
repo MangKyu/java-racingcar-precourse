@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-public class Cars {
+public class Cars implements Movable {
 
     private final Set<Car> carSet;
 
@@ -34,4 +34,10 @@ public class Cars {
         carSet.add(car);
     }
 
+    @Override
+    public void moveRandomly() {
+        for (final Car car : carSet) {
+            car.moveRandomly();
+        }
+    }
 }
