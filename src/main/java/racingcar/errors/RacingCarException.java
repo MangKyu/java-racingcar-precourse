@@ -12,4 +12,8 @@ public final class RacingCarException {
         return new IllegalArgumentException(PREFIX + message);
     }
 
+    public static RuntimeException invalidState(final String message) {
+        return new IllegalStateException(PREFIX + message);
+    }
+
 }
