@@ -19,8 +19,8 @@ class CarsPositionTest {
 
         // then
         assertThat(result).isNotNull();
-        assertThat(result.toViewString()).contains(carName1);
-        assertThat(result.toViewString()).contains(carName2);
+        assertThat(result.toString()).contains(carName2);
+        assertThat(result.toString()).contains(carName1);
     }
 
 }

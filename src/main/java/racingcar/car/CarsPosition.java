@@ -16,7 +16,8 @@ public class CarsPosition {
         }
     }
 
-    public String toViewString() {
+    @Override
+    public String toString() {
         final StringBuilder stringBuilder = new StringBuilder();
         for (final CarPosition position : carPositionList) {
             stringBuilder.append(position).append("\n");

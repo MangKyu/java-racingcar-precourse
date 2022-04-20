@@ -66,14 +66,14 @@ public class Car implements Movable, Comparable<Car> {
         return this.position.equals(firstWinner.position);
     }
 
-    static class Position {
+    private static class Position {
 
         private static final int MIN_POSITION = 1;
         private static final int MOVE_LOWER_BOUNDARY = 4;
         private static final int MAX_POSITION = 9;
         private int value;
 
-        void move(final int input) {
+        private void move(final int input) {
             if (notInRange(input)) {
                 throw RacingCarException.invalidState("Random value not in range: " + input);
             }

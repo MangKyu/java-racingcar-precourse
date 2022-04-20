@@ -1,6 +1,7 @@
 package racingcar.game;
 
 import racingcar.car.CarWinners;
+import racingcar.car.CarsPosition;
 
 public final class GameView {
 
@@ -16,7 +17,7 @@ public final class GameView {
         System.out.println("\n실행 결과");
     }
 
-    public void printCarPosition(final String positions) {
+    public void printCarPositions(final CarsPosition positions) {
         System.out.println(positions);
     }
 

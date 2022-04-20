@@ -48,6 +48,10 @@ public class Cars implements Movable {
         return findWinners(firstWinner);
     }
 
+    private Car findFirstWinner() {
+        return Collections.max(this.carSet);
+    }
+
     private CarWinners findWinners(final Car firstWinner) {
         final List<Car> winnerList = new ArrayList<>();
         for (final Car car : carSet) {
@@ -60,10 +64,6 @@ public class Cars implements Movable {
         if (target.inSamePosition(source)) {
             winnerList.add(source);
         }
-    }
-
-    private Car findFirstWinner() {
-        return Collections.max(this.carSet);
     }
 
 }

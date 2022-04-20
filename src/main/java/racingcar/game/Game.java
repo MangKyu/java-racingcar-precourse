@@ -23,11 +23,6 @@ public class Game implements Playable {
         complete();
     }
 
-    private void complete() {
-        final CarWinners winners = cars.findWinners();
-        gameView.printWinners(winners);
-    }
-
     private void init() {
         inputCars();
         inputGameRound();
@@ -70,8 +65,13 @@ public class Game implements Playable {
         while (!round.isEnd()) {
             round.start();
             cars.moveRandomly();
-            gameView.printCarPosition(cars.getCarsPosition().toViewString());
+            gameView.printCarPositions(cars.getCarsPosition());
         }
+    }
+
+    private void complete() {
+        final CarWinners winners = cars.findWinners();
+        gameView.printWinners(winners);
     }
 
 }
