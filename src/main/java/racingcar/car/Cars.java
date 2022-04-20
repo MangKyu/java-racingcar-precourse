@@ -40,4 +40,8 @@ public class Cars implements Movable {
             car.moveRandomly();
         }
     }
+
+    public CarsPosition getCarsPosition() {
+        return new CarsPosition(carSet);
+    }
 }

@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import org.assertj.core.api.AbstractThrowableAssert;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.MockedStatic;
@@ -114,5 +115,18 @@ class CarTest {
         // then
         result.isInstanceOf(IllegalStateException.class).hasMessageContaining(RacingCarException.PREFIX);
     }
+
+    @Test
+    void 자동차위치정보조회() {
+        // given
+        final Car car = new Car("MK");
+
+        // when
+        final CarPosition result = car.toCarPosition();
+
+        // then
+        assertThat(result).isNotNull();
+    }
+
 
 }

@@ -35,6 +35,10 @@ public class Car implements Movable {
         return position.value;
     }
 
+    public CarPosition toCarPosition() {
+        return new CarPosition(this.carName, this.position.value);
+    }
+
     @Override
     public boolean equals(final Object o) {
         if (this == o) return true;

@@ -1,6 +1,7 @@
 package racingcar.car;
 
 import org.assertj.core.api.AbstractThrowableAssert;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -35,6 +36,18 @@ class CarsTest {
 
         // then
         result.isInstanceOf(IllegalArgumentException.class).hasMessageContaining(RacingCarException.PREFIX);
+    }
+
+    @Test
+    void 자동차들의위치조회() {
+        // given
+        final Cars cars = new Cars(new String[]{"a", "ab", "abc"});
+
+        // when
+        final CarsPosition result = cars.getCarsPosition();
+
+        // then
+        assertThat(result).isNotNull();
     }
 
     private static Stream<Arguments> validCarNames() {
