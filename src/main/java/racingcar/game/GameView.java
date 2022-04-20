@@ -21,6 +21,6 @@ public final class GameView {
     }
 
     public void printWinners(final CarWinners winners) {
-        System.out.println("최종 우승자: " + winners);
+        System.out.println("최종 우승자는 " + winners + "입니다.");
     }
 }

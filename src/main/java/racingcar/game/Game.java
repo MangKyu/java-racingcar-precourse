@@ -33,14 +33,36 @@ public class Game implements Playable {
         inputGameRound();
     }
 
-    private void inputGameRound() {
-        gameView.printInputGameRound();
-        this.round = player.inputGameRound();
+    private void inputCars() {
+        do {
+            gameView.printInputCars();
+        } while(!doInputCarSuccess());
     }
 
-    private void inputCars() {
-        gameView.printInputCars();
-        this.cars = player.inputCarNames();
+    private boolean doInputCarSuccess() {
+        try {
+            this.cars = player.inputCarNames();
+            return true;
+        } catch (final IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+        }
+        return false;
+    }
+
+    private void inputGameRound() {
+        do {
+            gameView.printInputGameRound();
+        } while(!doInputRoundSuccess());
+    }
+
+    private boolean doInputRoundSuccess() {
+        try {
+            this.round = player.inputGameRound();
+            return true;
+        } catch (final IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+        }
+        return false;
     }
 
     private void start(final Cars cars, final GameRound round) {
