@@ -50,6 +50,18 @@ class CarsTest {
         assertThat(result).isNotNull();
     }
 
+    @Test
+    void 자동차들우승자조회() {
+        // given
+        final Cars cars = new Cars(new String[]{"a", "ab", "abc"});
+
+        // when
+        final CarWinners result = cars.findWinners();
+
+        // then
+        assertThat(result).isNotNull();
+    }
+
     private static Stream<Arguments> validCarNames() {
         return Stream.of(
                 Arguments.of((Object) new String[]{"a"}),

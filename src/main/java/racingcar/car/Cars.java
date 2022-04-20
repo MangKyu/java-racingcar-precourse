@@ -2,9 +2,7 @@ package racingcar.car;
 
 import racingcar.errors.RacingCarException;
 
-import java.util.Arrays;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.*;
 
 public class Cars implements Movable {
 
@@ -44,4 +42,28 @@ public class Cars implements Movable {
     public CarsPosition getCarsPosition() {
         return new CarsPosition(carSet);
     }
+
+    public CarWinners findWinners() {
+        final Car firstWinner = findFirstWinner();
+        return findWinners(firstWinner);
+    }
+
+    private CarWinners findWinners(final Car firstWinner) {
+        final List<Car> winnerList = new ArrayList<>();
+        for (final Car car : carSet) {
+            addSamePositionOnly(winnerList, firstWinner, car);
+        }
+        return new CarWinners(winnerList);
+    }
+
+    private void addSamePositionOnly(final List<Car> winnerList, final Car target, final Car source) {
+        if (target.inSamePosition(source)) {
+            winnerList.add(source);
+        }
+    }
+
+    private Car findFirstWinner() {
+        return Collections.max(this.carSet);
+    }
+
 }

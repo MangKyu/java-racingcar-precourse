@@ -128,5 +128,47 @@ class CarTest {
         assertThat(result).isNotNull();
     }
 
+    @Test
+    void comparable구현() {
+        // given
+        final Car car1 = new Car("MK");
+        final Car car2 = new Car("MK");
+
+        // when
+        final int result = car1.compareTo(car2);
+
+        // then
+        assertThat(result).isZero();
+    }
+
+    @Test
+    void 같은위치에있는지검사_True() {
+        // given
+        final Car car1 = new Car("MK");
+        final Car car2 = new Car("MK");
+
+        // when
+        final boolean result = car1.inSamePosition(car2);
+
+        // then
+        assertThat(result).isTrue();
+    }
+
+    @Test
+    void 같은위치에있는지검사_False() {
+        // given
+        randoms.when(() -> Randoms.pickNumberInRange(1, 9))
+                .thenReturn(5);
+
+        final Car car1 = new Car("MK");
+        car1.moveRandomly();
+        final Car car2 = new Car("MK");
+
+        // when
+        final boolean result = car1.inSamePosition(car2);
+
+        // then
+        assertThat(result).isFalse();
+    }
 
 }

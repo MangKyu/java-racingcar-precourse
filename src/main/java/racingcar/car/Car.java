@@ -5,7 +5,7 @@ import racingcar.errors.RacingCarException;
 
 import java.util.Objects;
 
-public class Car implements Movable {
+public class Car implements Movable, Comparable<Car> {
 
     private static final int MIN_CAR_NAME_LENGTH = 1;
     private static final int MAX_CAR_NAME_LENGTH = 5;
@@ -54,9 +54,16 @@ public class Car implements Movable {
 
     @Override
     public String toString() {
-        return "Car{" +
-                "carName='" + carName + '\'' +
-                '}';
+        return carName;
+    }
+
+    @Override
+    public int compareTo(final Car car) {
+        return this.getCurrentPosition() - car.getCurrentPosition();
+    }
+
+    public boolean inSamePosition(final Car firstWinner) {
+        return this.position.equals(firstWinner.position);
     }
 
     static class Position {
@@ -86,6 +93,19 @@ public class Car implements Movable {
 
         private void move() {
             value++;
+        }
+
+        @Override
+        public boolean equals(final Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            final Position position = (Position) o;
+            return value == position.value;
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(value);
         }
     }
 
