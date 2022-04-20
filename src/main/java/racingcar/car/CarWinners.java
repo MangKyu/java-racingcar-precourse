@@ -11,7 +11,8 @@ public class CarWinners {
         this.carList = carList;
     }
 
-    public String toViewString() {
+    @Override
+    public String toString() {
         final StringBuilder stringBuilder = new StringBuilder();
         for (final Car car : carList) {
             stringBuilder.append(car).append(DELIMITER);

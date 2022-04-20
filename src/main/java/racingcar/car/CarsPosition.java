@@ -19,7 +19,7 @@ public class CarsPosition {
     public String toViewString() {
         final StringBuilder stringBuilder = new StringBuilder();
         for (final CarPosition position : carPositionList) {
-            stringBuilder.append(position.toViewString()).append("\n");
+            stringBuilder.append(position).append("\n");
         }
         return stringBuilder.toString();
     }

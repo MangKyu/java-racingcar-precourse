@@ -18,7 +18,7 @@ class CarWinnersTest {
         final CarWinners carWinners = new CarWinners(Collections.singletonList(new Car(carName1)));
 
         // when
-        final String result = carWinners.toViewString();
+        final String result = carWinners.toString();
 
         // then
         assertThat(result).contains(carName1)
@@ -31,7 +31,7 @@ class CarWinnersTest {
         final CarWinners carWinners = new CarWinners(Arrays.asList(new Car(carName1), new Car(carName2)));
 
         // when
-        final String result = carWinners.toViewString();
+        final String result = carWinners.toString();
 
         // then
         assertThat(result).contains(carName1)

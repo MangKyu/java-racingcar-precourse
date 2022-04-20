@@ -1,5 +1,6 @@
 package racingcar.game;
 
+import racingcar.car.CarWinners;
 import racingcar.car.Cars;
 import racingcar.player.Player;
 
@@ -23,7 +24,7 @@ public class Game implements Playable {
     }
 
     private void complete() {
-        final String winners = cars.findWinners().toViewString();
+        final CarWinners winners = cars.findWinners();
         gameView.printWinners(winners);
     }
 

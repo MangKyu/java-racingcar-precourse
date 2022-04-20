@@ -12,7 +12,8 @@ public class CarPosition {
         this.position = position;
     }
 
-    public String toViewString() {
+    @Override
+    public String toString() {
         return carName + " : " + positionToChars();
     }
 

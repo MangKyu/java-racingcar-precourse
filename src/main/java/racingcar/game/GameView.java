@@ -1,5 +1,7 @@
 package racingcar.game;
 
+import racingcar.car.CarWinners;
+
 public final class GameView {
 
     public void printInputCars() {
@@ -18,7 +20,7 @@ public final class GameView {
         System.out.println(positions);
     }
 
-    public void printWinners(final String winners) {
+    public void printWinners(final CarWinners winners) {
         System.out.println("최종 우승자: " + winners);
     }
 }

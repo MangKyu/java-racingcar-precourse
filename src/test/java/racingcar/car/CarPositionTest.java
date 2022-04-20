@@ -15,7 +15,7 @@ class CarPositionTest {
         final CarPosition carPosition = car.toCarPosition();
 
         // when
-        final String result = carPosition.toViewString();
+        final String result = carPosition.toString();
 
         // then
         assertThat(result).contains(carName);
