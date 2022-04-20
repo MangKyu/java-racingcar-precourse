@@ -99,4 +99,20 @@ class CarTest {
         assertThat(car.getCurrentPosition()).isEqualTo(defaultPosition);
     }
 
+    @ParameterizedTest
+    @ValueSource(ints = {-3, -2, -1, 0, 10, 11, 12, 13, 14, 15})
+    void 무작위이동_실패_잘못된값(final int input) {
+        // given
+        randoms.when(() -> Randoms.pickNumberInRange(1, 9))
+                .thenReturn(input);
+
+        final Car car = new Car("MK");
+
+        // when
+        final AbstractThrowableAssert<?, ? extends Throwable> result = assertThatThrownBy(car::moveRandomly);
+
+        // then
+        result.isInstanceOf(IllegalStateException.class).hasMessageContaining(RacingCarException.PREFIX);
+    }
+
 }

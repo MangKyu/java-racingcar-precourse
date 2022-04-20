@@ -63,13 +63,25 @@ public class Car implements Movable {
         private int value;
 
         void move(final int input) {
-            if (doMove(input)) {
-                value++;
+            if (notInRange(input)) {
+                throw RacingCarException.invalidState("Random value not in range: " + input);
             }
+
+            if (doMove(input)) {
+                move();
+            }
+        }
+
+        private boolean notInRange(final int input) {
+            return input < MIN_POSITION || input > MAX_POSITION;
         }
 
         private boolean doMove(final int result) {
             return MOVE_LOWER_BOUNDARY <= result && result <= MAX_POSITION;
+        }
+
+        private void move() {
+            value++;
         }
     }
 
