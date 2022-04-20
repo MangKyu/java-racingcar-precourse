@@ -82,4 +82,21 @@ class CarTest {
         assertThat(car.getCurrentPosition()).isNotEqualTo(defaultPosition);
     }
 
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2, 3})
+    void 무작위이동_실패(final int input) {
+        // given
+        randoms.when(() -> Randoms.pickNumberInRange(1, 9))
+                .thenReturn(input);
+
+        final Car car = new Car("MK");
+        final int defaultPosition = car.getCurrentPosition();
+
+        // when
+        car.moveRandomly();
+
+        // then
+        assertThat(car.getCurrentPosition()).isEqualTo(defaultPosition);
+    }
+
 }
