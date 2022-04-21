@@ -17,4 +17,15 @@ class RacingCarExceptionTest {
         assertThat(result).isInstanceOf(IllegalArgumentException.class).hasMessageContaining(RacingCarException.PREFIX);
     }
 
+    @Test
+    void invalidState의타입과메세지검사() {
+        // given
+
+        // when
+        final RuntimeException result = RacingCarException.invalidState("메세지");
+
+        // then
+        assertThat(result).isInstanceOf(IllegalStateException.class).hasMessageContaining(RacingCarException.PREFIX);
+    }
+
 }
